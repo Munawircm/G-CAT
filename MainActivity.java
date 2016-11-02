@@ -1,22 +1,27 @@
 package com.munnasoft.munna.gcat.gcat;
 
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
-import android.graphics.Bitmap;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
+import android.support.annotation.DrawableRes;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -31,29 +36,37 @@ public class MainActivity extends Activity implements View.OnClickListener {
     String str = "";
     String strr = "";
     String ssr="";
+    String ss ="OFF";
+    String rr = "OFF";
     String flag;
-    Button btn1;
-    Button btn2;
-    Button btn3;
-    Button btn4;
-    Button btn5;
-    Button btn6;
+    int bnd=1;
+    ImageView btn1;
+    ImageView btn2;
+    ImageView btn3;
+    ImageView btn4;
+    ImageView btn5;
+    ImageView btn6;
+    ImageView btn7;
     int flags=0;
     static final int RB=2500;
     @SuppressWarnings("deprecation")
     @SuppressLint("SetJavaScriptEnabled")
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
+
         webview = (WebView)findViewById(R.id.webView1);
         webview1 = (WebView)findViewById(R.id.webView2);
-        btn1 = (Button)findViewById(R.id.button1);
-        btn2 = (Button)findViewById(R.id.button2);
-        btn3 = (Button)findViewById(R.id.button3);
-        btn4 = (Button)findViewById(R.id.button4);
-        btn5 = (Button)findViewById(R.id.button5);
-        btn6 = (Button)findViewById(R.id.button6);
+        btn1 = (ImageView)findViewById(R.id.imageView1);
+        btn2 = (ImageView)findViewById(R.id.imageView2);
+        btn3 = (ImageView)findViewById(R.id.imageView3);
+        btn4 = (ImageView)findViewById(R.id.imageView4);
+        btn5 = (ImageView)findViewById(R.id.imageView5);
+        btn6 = (ImageView)findViewById(R.id.imageView6);
+        btn7 = (ImageView)findViewById(R.id.imageView7);
         webview.setWebChromeClient(new WebChromeClient());
         webview1.setWebChromeClient(new WebChromeClient());
         WebViewClient client = new ChildBrowserClient();
@@ -89,17 +102,21 @@ setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         btn4.setOnClickListener(this);
         btn5.setOnClickListener(this);
         btn6.setOnClickListener(this);
+        btn7.setOnClickListener(this);
         webview1.setVisibility(View.INVISIBLE);
         webview.setVisibility(View.VISIBLE);
         super.onCreate(savedInstanceState);
+
+
     }
+
 
     @Override
     public void onClick(View v) {
 
         int id=v.getId();
         switch(id) {
-            case R.id.button1:
+            case R.id.imageView1:
                 webview.loadUrl("http://www.gpsvisualizer.com/draw");
                 webview.setInitialScale(0);
                 webview.requestFocus();
@@ -107,45 +124,65 @@ setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 Toast.makeText(MainActivity.this, "Cache Cleared", Toast.LENGTH_SHORT).show();
                     webview.setVisibility(View.VISIBLE);
                     webview1.setVisibility(View.INVISIBLE);
+                Animation animation= AnimationUtils.loadAnimation(
+                        getApplicationContext(), R.anim.rotateanti);
+                btn1.startAnimation(animation);
                 break;
-            case R.id.button2:
+            case R.id.imageView2:
 
                 if(flags==0){
                     webview1.setVisibility(View.VISIBLE);
                     webview.setVisibility(View.INVISIBLE);
+                    Animation animation1= AnimationUtils.loadAnimation(
+                            getApplicationContext(), R.anim.rotateanti1);
+                    btn2.startAnimation(animation1);
                     flags=1;
                 }else if(flags==1){
                     webview.setVisibility(View.VISIBLE);
                     webview1.setVisibility(View.INVISIBLE);
+                    Animation animation3= AnimationUtils.loadAnimation(
+                            getApplicationContext(), R.anim.rotate);
+                    btn2.startAnimation(animation3);
                     flags=0;
                 }
                 break;
-            case R.id.button3:
-                String ss = btn3.getText().toString();
+            case R.id.imageView3:
+
                 if (ss.equals("ON")) {
                     Toast.makeText(MainActivity.this, "Tractor OFF Commad", Toast.LENGTH_SHORT).show();
-                    btn3.setText("OFF");
+                    ss="OFF";
+                    Drawable offf=getResources().getDrawable(R.drawable.off);
+                    btn3.setImageDrawable(offf);
+
                 } else if (ss.equals("OFF")) {
+                    Drawable onn=getResources().getDrawable(R.drawable.onss);
+                    ss="ON";
+                    btn3.setImageDrawable(onn);
                     Toast.makeText(MainActivity.this, "Tractor ON Commad", Toast.LENGTH_SHORT).show();
-                    btn3.setText("ON");
+
                 }
                 break;
-            case R.id.button4:
-                String rr = btn4.getText().toString();
+            case R.id.imageView4:
+
                 if (rr.equals("OFF")) {
                     Toast.makeText(MainActivity.this, "Tractor TILLING State", Toast.LENGTH_SHORT).show();
-                    btn4.setText("TILL");
+                    rr="TILL";
+                    Drawable till=getResources().getDrawable(R.drawable.tills);
+                    btn4.setImageDrawable(till);
                 } else if (rr.equals("TILL")) {
                     Toast.makeText(MainActivity.this, "Tractor SOWING State", Toast.LENGTH_SHORT).show();
-                    btn4.setText("SOW");
+                    rr="SOW";
+                    Drawable sow=getResources().getDrawable(R.drawable.sow);
+                    btn4.setImageDrawable(sow);
                 } else if (rr.equals("SOW")) {
                     Toast.makeText(MainActivity.this, "Tractor idle State", Toast.LENGTH_SHORT).show();
-                    btn4.setText("OFF");
+                    rr="OFF";
+                    Drawable off=getResources().getDrawable(R.drawable.offs);
+                    btn4.setImageDrawable(off);
                 }
                 break;
-            case R.id.button5:
+            case R.id.imageView5:
 
-                Toast.makeText(MainActivity.this, "Data Binded", Toast.LENGTH_SHORT).show();
                 try {
                     String rs="";
                     str="";
@@ -170,49 +207,80 @@ setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 }
                 ssr="";
                 token();
-               String bt33= btn3.getText().toString();
-                String bt44=btn4.getText().toString();
+               String bt33= ss;
+                String bt44=rr;
                 String t=" ";
                 ssr +=t+"brk:";
                 ssr+="_";
-                ssr+=bt33;
+                ssr+=ss;
                 ssr+="_";
                 ssr+="\n"+t;
                 ssr+="_";
-                ssr+=bt44;
+                ssr+=rr;
                 ssr+="_";
                 ssr+="\n"+t;
                 ssr +=strr;
                 ssr +="\n"+t;
                 if (bt44.equals("SOW")||bt44.equals("TILL")) {
-                    btn4.setText("OFF");
-                    String bt444= btn4.getText().toString();
+                    rr="OFF";
+                    Drawable off=getResources().getDrawable(R.drawable.offs);
+                    btn4.setImageDrawable(off);
+                    String bt444= rr;
                     ssr+="_";
                     ssr+=bt444;
                     ssr+="_";
                     ssr+="\n"+t;
                 }else{
-                    String bt444= btn4.getText().toString();
+                    String bt444= rr;
                     ssr+="_";
                     ssr+=bt444;
                     ssr+="_";
                     ssr+="\n"+t;
                 }
                 if (bt33.equals("ON")) {
-                     btn3.setText("OFF");
-                    String bt333= btn3.getText().toString();
+                    Drawable offf=getResources().getDrawable(R.drawable.off);
+                    btn3.setImageDrawable(offf);
+                     ss="OFF";
+                    String bt333=ss;
                     ssr+="_";
                     ssr+=bt333;
                     ssr+="_brk:";
                    }else{
-                    String bt333= btn3.getText().toString();
+                    String bt333=ss;
                     ssr+="_";
                     ssr+=bt333;
                     ssr+="_brk:";
                 }
-                Toast.makeText(MainActivity.this, ssr, Toast.LENGTH_LONG).show();
+
+                if(bnd==1) {
+                    Drawable bn=getResources().getDrawable(R.drawable.bind2);
+                    btn5.setImageDrawable(bn);
+                    bnd=0;
+                    Toast.makeText(MainActivity.this, "Data Binded", Toast.LENGTH_SHORT).show();
+
+                    Toast.makeText(MainActivity.this, ssr, Toast.LENGTH_LONG).show();
+
+                }else if(bnd==0){
+                Drawable bn1=getResources().getDrawable(R.drawable.bind);
+                    Toast.makeText(MainActivity.this, "Data UnBinded", Toast.LENGTH_SHORT).show();
+                    ssr="";
+                btn5.setImageDrawable(bn1);
+                    bnd=1;
+                 }
+
                     break;
-            case R.id.button6:
+            case R.id.imageView6:
+                Toast.makeText(MainActivity.this, "Getting Current Tractor Location", Toast.LENGTH_SHORT).show();
+                ImageView imgView1 = (ImageView)findViewById(R.id.imageView9);
+                imgView1.setVisibility(ImageView.VISIBLE);
+                imgView1.setBackgroundResource(R.drawable.frmr);
+
+                AnimationDrawable frameAnimation1 =
+                        (AnimationDrawable) imgView1.getBackground();
+                frameAnimation1.stop();
+                frameAnimation1.start();
+                  break;
+            case R.id.imageView7:
                 webview1.setVisibility(View.VISIBLE);
                 webview.setVisibility(View.INVISIBLE);
                webview1.loadUrl("http://data.sparkfun.com/input/o81GAKqy6WI5VXpZA8r7/clear?private_key=yzRBMXN7JyUBP6nYW9ox");
@@ -224,6 +292,18 @@ setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                     public void onTick(long millisUntilFinished) {
                     }
                 }.start();
+                ImageView imgView = (ImageView)findViewById(R.id.imageView8);
+                imgView.setVisibility(ImageView.VISIBLE);
+                imgView.setBackgroundResource(R.drawable.frms);
+
+                AnimationDrawable frameAnimation =
+                        (AnimationDrawable) imgView.getBackground();
+                                 frameAnimation.stop();
+                                frameAnimation.start();
+
+//                btn7.setBackgroundResource(R.drawable.frms);
+//                AnimationDrawable fsend=(AnimationDrawable) btn7.getBackground();
+//                fsend.start();
                 break;
             default:
                 break;
@@ -298,8 +378,8 @@ setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                } else {
                    Toast.makeText(MainActivity.this, "GPSdata Not Found", Toast.LENGTH_SHORT).show();
                }
-         //  }
-    }
+         }
+
     /**
      * The webview client receives notifications about appView
      */
@@ -309,12 +389,12 @@ setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             boolean value = true;
-           // url = "http://www.gpsvisualizer.com/draw/download_file.php?file=392830203-90323.txt&download=1";
+            // url = "http://www.gpsvisualizer.com/draw/download_file.php?file=392830203-90323.txt&download=1";
             StringTokenizer h = new StringTokenizer(url, "&");
-            int aa=0;
+            int aa = 0;
             while (h.hasMoreTokens()) {
                 String token = h.nextToken();
-                aa=aa+1;
+                aa = aa + 1;
                 if (aa == 1) {
                     StringTokenizer m = new StringTokenizer(token, "=");
                     int aaa = 0;
@@ -344,35 +424,21 @@ setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                                     request.setDescription("GPS Data Downloading...");
                                     request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
                                     //		request.setDestinationUri(Uri.fromFile(destinationFile));
-                                    request.setDestinationInExternalPublicDir("/Mytractor","GPSdata."+flag);
-                                    Toast.makeText(MainActivity.this, "\t\t   Downloading..\n" +"GPSdata."+flag, Toast.LENGTH_SHORT).show();
+                                    request.setDestinationInExternalPublicDir("/Mytractor", "GPSdata." + flag);
+                                    Toast.makeText(MainActivity.this, "\t\t   Downloading..\n" + "GPSdata." + flag, Toast.LENGTH_SHORT).show();
                                     mdDownloadManager.enqueue(request);
                                     value = false;
-                                }}}}}}
-                if (value) {
-                    view.loadUrl(url);
+                                }
+                            }
+                        }
+                    }
                 }
+            }
+            if (value) {
+                view.loadUrl(url);
+            }
 
             return value;
         }
-        @Override
-        public void onPageFinished(WebView view, String url) {
-            super.onPageFinished(view, url);
-        }
-        /**
-         * Notify the host application that a page has started loading.  
-         *
-         * @param view
-         *      The webview initiating the callback.  
-         * @param url
-         *      The url of the page.  
-         */
-        @Override
-        public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            super.onPageStarted(view, url, favicon);
-        }
-    }
 
-
-
-}
+    }}
