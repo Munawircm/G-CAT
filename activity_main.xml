@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -31,7 +32,7 @@
         android:layout_alignParentStart="true">
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/imageView"
             android:src="@color/btllgray"
@@ -40,66 +41,96 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_alignTop="@+id/button3" />
+            android:layout_alignTop="@+id/imageView1" />
 
-        <Button
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OFF"
-            android:id="@+id/button4"
+            android:id="@+id/imageView1"
+            android:src="@drawable/refresh"
             android:layout_alignParentBottom="true"
-            android:background="@color/btdgray"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/imageView3" />
 
-        <Button
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Send"
-            android:id="@+id/button6"
-            android:background="@color/btdgray"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bind"
-            android:id="@+id/button5"
-            android:background="@color/btdgray"
+            android:src="@drawable/offs"
+            android:id="@+id/imageView4"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true" />
 
-        <Button
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OFF"
-            android:id="@+id/button3"
-            android:background="@color/btgray"
-            android:layout_above="@+id/button6"
+            android:src="@drawable/off"
+            android:id="@+id/imageView3"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/imageView4"
+            android:layout_toStartOf="@+id/imageView4" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rec0"
+            android:id="@+id/imageView6"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/imageView7"
+            android:layout_toStartOf="@+id/imageView7" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/send0"
+            android:id="@+id/imageView7"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/imageView" />
 
-        <Button
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Switch"
-            android:id="@+id/button2"
-            android:background="@color/btgray"
-            android:layout_alignTop="@+id/imageView"
-            android:layout_alignLeft="@+id/button5"
-            android:layout_alignStart="@+id/button5" />
+            android:src="@drawable/bind"
+            android:id="@+id/imageView5"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/imageView4"
+            android:layout_toEndOf="@+id/imageView4" />
 
-        <Button
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Refresh"
-            android:id="@+id/button1"
-            android:background="@color/btgray"
-            android:layout_alignTop="@+id/imageView"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:src="@drawable/switcht"
+            android:id="@+id/imageView2"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/imageView1"
+            android:layout_toEndOf="@+id/imageView1"
+            android:layout_alignTop="@+id/imageView" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView8"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@+id/imageView6"
+            android:layout_toEndOf="@+id/imageView6"
+            android:layout_alignTop="@+id/imageView" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:id="@+id/imageView9"
+            android:layout_alignLeft="@+id/imageView6"
+            android:layout_alignStart="@+id/imageView6"
+            android:layout_toLeftOf="@+id/imageView7"
+            android:layout_toStartOf="@+id/imageView7"
+            android:layout_alignParentBottom="true"
+            android:layout_alignTop="@+id/imageView" />
+
     </RelativeLayout>
 
 </RelativeLayout>
